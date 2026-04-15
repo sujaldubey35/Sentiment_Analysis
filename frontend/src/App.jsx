@@ -41,10 +41,10 @@ export default function App() {
       setHistory(prev => [...prev, { review, ...data }]);
 
       const positiveSound = new Audio("/positive.mp3");
-      const negativeSound = new Audio("/negative.mp3");
+      const NegativeSound = new Audio("/negative.mp3");
 
-      if (data.sentiment === "Positive") positiveSound.play();
-      if (data.sentiment === "Negative") negativeSound.play();
+      if (data.sentiment === "positive") positiveSound.play();
+      if (data.sentiment === "negative") NegativeSound.play();
 
     } catch (err) {
 
@@ -56,34 +56,35 @@ export default function App() {
   };
 
   const getEmoji = () => {
-    if (!result) return "🤖";
-    if (result.sentiment === "Positive") return "💃";
-    if (result.sentiment === "Negative") return "😡";
-    return "😐";
+  if (!result) return "🤖";
+  if (result.sentiment === "positive") return "😊";
+  if (result.sentiment === "negative") return "😡";
+  return "😐";
   };
 
   const chartData = [
-    {
-      name: "Positive",
-      value: history.filter(r => r.sentiment === "Positive").length
-    },
-    {
-      name: "Negative",
-      value: history.filter(r => r.sentiment === "Negative").length
-    },
-    {
-      name: "Neutral",
-      value: history.filter(r => r.sentiment === "Neutral").length
-    }
-  ];
+  {
+    name: "Positive",
+    value: history.filter(r => r.sentiment === "positive").length
+  },
+  {
+    name: "Negative",
+    value: history.filter(r => r.sentiment === "negative").length
+  },
+  {
+    name: "Neutral",
+    value: history.filter(r => r.sentiment === "neutral").length
+  }
+];
 
-  const getBackground = () => {
+const getBackground = () => {
 
-    if (!result) return "linear-gradient(135deg,#141E30,#243B55)";
-    if (result.sentiment === "Positive") return "linear-gradient(135deg,#11998e,#38ef7d)";
-    if (result.sentiment === "Negative") return "linear-gradient(135deg,#ff416c,#ff4b2b)";
-    return "linear-gradient(135deg,#f7971e,#ffd200)";
-  };
+  if (!result) return "linear-gradient(135deg,#141E30,#243B55)";
+  if (result.sentiment === "positive") return "linear-gradient(135deg,#11998e,#38ef7d)";
+  if (result.sentiment === "negative") return "linear-gradient(135deg,#ff416c,#ff4b2b)";
+  return "linear-gradient(135deg,#f7971e,#ffd200)";
+
+};
 
   return (
 
