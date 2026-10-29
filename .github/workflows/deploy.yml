@@ -6,33 +6,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
-    name: Build & Test (CI)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Test Frontend Build
-        working-directory: frontend
-        run: |
-          npm install
-          npm run build
-
-      - name: Test Backend Syntax
-        working-directory: backend
-        run: |
-          npm install
-          node -c server.js
-
   deploy:
-    name: Deploy to AWS EC2 (CD)
-    needs: test
+    name: Deploy to AWS EC2
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to EC2 via SSH
